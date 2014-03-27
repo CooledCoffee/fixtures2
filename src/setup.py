@@ -24,7 +24,7 @@ setup(
         'mox',
     ],
     packages=[
-        'fixtures',
+        'fixtures2',
     ],
     url='https://github.com/CooledCoffee/fixtures2/',
 )
