@@ -16,6 +16,9 @@ setup(
         'Topic :: Software Development :: Libraries',
     ],
     description='Fixtures2 is an extension of the fixtures test framework.',
+    extras_require={
+        'mox': ['mox'],
+    },
     install_requires=[
         'fixtures',
         'mox',
