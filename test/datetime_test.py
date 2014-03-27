@@ -12,18 +12,18 @@ def datetime_now():
 def datetime_today():
     return datetime.today()
 
-class DateFixtureTest(TestCase):
+class DateTest(TestCase):
     def setUp(self):
-        super(DateFixtureTest, self).setUp()
+        super(DateTest, self).setUp()
         self.useFixture(DateFixture('datetime_test.date', date(2000, 1, 1)))
         
     def test(self):
         result = date_today()
         self.assertEqual(date(2000, 1, 1), result)
 
-class DateTimeFixtureTest(TestCase):
+class DateTimeTest(TestCase):
     def setUp(self):
-        super(DateTimeFixtureTest, self).setUp()
+        super(DateTimeTest, self).setUp()
         self.useFixture(DateTimeFixture('datetime_test.datetime', datetime(2000, 1, 1, 12, 0, 0)))
         
     def test_now(self):
