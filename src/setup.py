@@ -21,7 +21,6 @@ setup(
     },
     install_requires=[
         'fixtures',
-        'mox',
     ],
     packages=[
         'fixtures2',
