@@ -15,7 +15,8 @@ try:
         def create_mock(self, cls=None):
             return self._mox.CreateMockAnything() if cls is None else self._mox.CreateMock(cls)
         
-        def mock(self, obj, attr):
+        def mock(self, path):
+            obj, attr = _split(path)
             self._mox.StubOutWithMock(obj, attr)
             
         def record(self):
@@ -56,6 +57,18 @@ try:
         
         def get(self):
             return self._arg
+        
+    def _split(path):
+        location, attr = path.rsplit('.', 1)
+        try:
+            __import__(location, {}, {})
+        except ImportError:
+            pass
+        components = location.split('.')
+        current = __import__(components[0], {}, {})
+        for component in components[1:]:
+            current = getattr(current, component)
+        return current, attr
         
 except ImportError:
     pass

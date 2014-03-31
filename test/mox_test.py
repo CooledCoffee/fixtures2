@@ -10,7 +10,7 @@ try:
             self.mox = self.useFixture(MoxFixture())
             
         def test_mock(self):
-            self.mox.mock(os.path, 'exists')
+            self.mox.mock('os.path.exists')
             with self.mox.record():
                 os.path.exists('/tmp/abc').AndReturn(True)
             with self.mox.replay():
@@ -26,13 +26,12 @@ try:
                 self.assertEqual('foo', result)
                 
         def test_store_arg(self):
+            self.mox.mock('os.path.exists')
             arg = StoreArg()
-            self.mox.mock(os.path, 'exists')
             with self.mox.record():
                 os.path.exists(arg).AndReturn(True)
             with self.mox.replay():
                 os.path.exists('/tmp/abc')
                 self.assertEqual('/tmp/abc', arg.get())
-                
 except ImportError:
     pass
