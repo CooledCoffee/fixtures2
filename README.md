@@ -86,30 +86,35 @@ Date & DateTime
 Mox
 ---
 
-	from fixtures2.case import TestCase
-    from fixtures2.mox import MoxFixture
-    import time
-    
-    class MoxTest(TestCase):
-        def setUp(self):
-            super(MoxTest, self).setUp()
-            self.mox = self.useFixture(MoxFixture())
-            
-        def test_mock(self):
-            self.mox.mock(time, 'time')
-            with self.mox.record():
-                time.time().AndReturn(111)
-            with self.mox.replay():
-                result = time.time()
-                self.assertEqual(111, result)
-                
-        def test_create_mock(self):
-            mock = self.mox.create_mock()
-            with self.mox.record():
-                mock.foo().AndReturn('foo')
-            with self.mox.replay():
-                result = mock.foo()
-                self.assertEqual('foo', result)
+	class MoxTest(TestCase):
+	    def setUp(self):
+	        super(MoxTest, self).setUp()
+	        self.mox = self.useFixture(MoxFixture())
+	        
+	    def test_mock(self):
+	        self.mox.mock('os.path.exists')
+	        with self.mox.record():
+	            os.path.exists('/tmp/abc').AndReturn(True)
+	        with self.mox.replay():
+	            result = os.path.exists('/tmp/abc')
+	            self.assertTrue(result)
+	            
+	    def test_create_mock(self):
+	        mock = self.mox.create_mock()
+	        with self.mox.record():
+	            mock.foo().AndReturn('foo')
+	        with self.mox.replay():
+	            result = mock.foo()
+	            self.assertEqual('foo', result)
+	            
+	    def test_store_arg(self):
+	        self.mox.mock('os.path.exists')
+	        arg = StoreArg()
+	        with self.mox.record():
+	            os.path.exists(arg).AndReturn(True)
+	        with self.mox.replay():
+	            os.path.exists('/tmp/abc')
+	            self.assertEqual('/tmp/abc', arg.get())
 
 Author
 ======
