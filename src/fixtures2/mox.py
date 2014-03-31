@@ -2,6 +2,7 @@
 from __future__ import absolute_import
 from fixtures.fixture import Fixture
 try:
+    from mox import Comparator
     import mox
     
     class MoxFixture(Fixture):
@@ -37,5 +38,24 @@ try:
                     if error_value is None:
                         _mox.VerifyAll()
             return _Replay()
+        
+    class StoreArg(Comparator):
+        '''
+        >>> arg = StoreArg()
+        >>> arg.equals(1)
+        True
+        >>> arg.get()
+        1
+        '''
+        def __init__(self):
+            self._arg = None
+            
+        def equals(self, rhs):
+            self._arg = rhs
+            return True
+        
+        def get(self):
+            return self._arg
+        
 except ImportError:
     pass
