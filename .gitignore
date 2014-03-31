@@ -2,23 +2,13 @@
 .*
 *~
 *.swp
-*.py[cod]
+
+# python
+*.pyc
 __pycache__
 
 # pip
-*.egg
-*.egg-info
-dist
-build
-eggs
-parts
-bin
-var
-sdist
-develop-eggs
-.installed.cfg
-lib
-lib64
-pip-log.txt
-
+src/build
+src/dist
 src/MANIFEST
+
