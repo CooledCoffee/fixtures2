@@ -1,14 +1,19 @@
 # -*- coding: utf-8 -*-
+from decorated.base.dict import Dict
 from fixtures2.case import TestCase
 from fixtures2.patches import PatchesFixture
-import sys
 
-class PatchesTest(TestCase):
-    def setUp(self):
-        super(PatchesTest, self).setUp()
-        self.patches = self.useFixture(PatchesFixture())
-        
+foo = Dict(a=1)
+
+class PatchTest(TestCase):
     def test(self):
-        self.patches.patch('sys.argv', ['a', 'b', 'c'])
-        self.assertEqual(['a', 'b', 'c'], sys.argv)
+        patches = self.useFixture(PatchesFixture())
+        patches.patch('patches_test.foo.a', 2)
+        self.assertEqual(2, foo.a)
+        
+class PatchObjectTest(TestCase):
+    def test(self):
+        patches = self.useFixture(PatchesFixture())
+        patches.patch_object(foo, 'a', 2)
+        self.assertEqual(2, foo.a)
         
