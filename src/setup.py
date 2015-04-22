@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='fixtures2',
-    version='0.1.2',
+    version='0.1.3',
     author='Mengchen LEE',
     author_email='CooledCoffee@gmail.com',
     classifiers = [
