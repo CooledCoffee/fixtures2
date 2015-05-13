@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from distutils.core import setup
+import setuptools
 
 setup(
     name='fixtures2',
@@ -22,8 +23,7 @@ setup(
     install_requires=[
         'fixtures',
     ],
-    packages=[
-        'fixtures2',
-    ],
+    package_dir={'': 'src'},
+    packages=setuptools.find_packages(where='src'),
     url='https://github.com/CooledCoffee/fixtures2/',
 )
