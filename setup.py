@@ -4,7 +4,7 @@ import setuptools
 
 setup(
     name='fixtures2',
-    version='0.1.4',
+    version='0.1.5',
     author='Mengchen LEE',
     author_email='CooledCoffee@gmail.com',
     classifiers = [
@@ -25,5 +25,5 @@ setup(
     ],
     package_dir={'': 'src'},
     packages=setuptools.find_packages(where='src'),
-    url='https://github.com/CooledCoffee/fixtures2/',
+    url='https://package-insights.appspot.com/packages/fixtures2'
 )
