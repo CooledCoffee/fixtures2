@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
-from decorated.base.dict import Dict
 from fixtures2.case import TestCase
 from fixtures2.patches import PatchesFixture
 
-foo = Dict(a=1)
+class Foo(object):
+    def __init__(self):
+        self.a = 1
+foo = Foo()
 
 class PatchTest(TestCase):
     def test(self):
