@@ -4,7 +4,7 @@ import setuptools
 
 setup(
     name='fixtures2',
-    version='0.1.5',
+    version='0.1.6',
     author='Mengchen LEE',
     author_email='CooledCoffee@gmail.com',
     classifiers = [
