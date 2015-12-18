@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+from datetime import datetime, timedelta
 from fixtures2.case import TestCase
+import time
 
 class AssertBetweenTest(TestCase):
     def test_basic(self):
@@ -17,3 +19,24 @@ class AssertBetweenTest(TestCase):
         with self.assertRaises(AssertionError):
             self.assertBetween(10, 0, 10, inclusive=False)
             
+class AssertAlmostNowTest(TestCase):
+    def test_datetime(self):
+        self.assertAlmostNow(datetime.now() - timedelta(seconds=5))
+        self.assertAlmostNow(datetime.now() + timedelta(seconds=5))
+        with self.assertRaises(AssertionError):
+            self.assertAlmostNow(datetime.now() - timedelta(seconds=20))
+        with self.assertRaises(AssertionError):
+            self.assertAlmostNow(datetime.now() + timedelta(seconds=20))
+        
+    def test_number(self):
+        self.assertAlmostNow(time.time() - 5)
+        self.assertAlmostNow(time.time() + 5)
+        with self.assertRaises(AssertionError):
+            self.assertAlmostNow(time.time() - 20)
+        with self.assertRaises(AssertionError):
+            self.assertAlmostNow(time.time() + 20)
+            
+    def test_delta(self):
+        self.assertAlmostNow(datetime.now() - timedelta(seconds=20), delta=timedelta(seconds=30))
+        self.assertAlmostNow(datetime.now() - timedelta(seconds=20), delta=30)
+        
