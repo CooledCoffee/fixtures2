@@ -9,8 +9,8 @@ try:
         def setUp(self):
             super(MoxFixture, self).setUp()
             self._mox = mox.Mox()
-            self.addCleanup(lambda: self._mox.ResetAll())
-            self.addCleanup(lambda: self._mox.UnsetStubs())
+            self.addCleanup(self._mox.ResetAll)
+            self.addCleanup(self._mox.UnsetStubs)
             
         def create_mock(self, cls=None):
             return self._mox.CreateMockAnything() if cls is None else self._mox.CreateMock(cls)
@@ -19,7 +19,7 @@ try:
             obj, attr = _split(path)
             self._mox.StubOutWithMock(obj, attr)
             
-        def record(self):
+        def record(self): # pylint: disable=no-self-use
             class _Record(object):
                 def __enter__(self):
                     return self
@@ -28,7 +28,7 @@ try:
                     pass
             return _Record()
             
-        def replay(self):
+        def replay(self): # pylint: disable=no-self-use
             _mox = self._mox
             class _Replay(object):
                 def __enter__(self):

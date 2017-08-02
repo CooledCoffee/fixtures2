@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from fixtures.testcase import TestWithFixtures
 
 class TestCase(TestWithFixtures):
-    def assertAlmostNow(self, time, delta=timedelta(seconds=10)):
+    def assertAlmostNow(self, time, delta=timedelta(seconds=10)): # pylint: disable=invalid-name
         if isinstance(time, (int, float)):
             time = datetime.fromtimestamp(time)
         if isinstance(delta, (int, float)):
@@ -13,7 +13,7 @@ class TestCase(TestWithFixtures):
             msg = '"%s" is not almost now' % (time.strftime('%Y-%m-%d %H:%M:%S'))
             raise self.failureException(msg)
         
-    def assertBetween(self, value, lower_bound, upper_bound, inclusive=True):
+    def assertBetween(self, value, lower_bound, upper_bound, inclusive=True): # pylint: disable=invalid-name
         if inclusive:
             success = value >= lower_bound and value <= upper_bound
         else:

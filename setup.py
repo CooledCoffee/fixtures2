@@ -22,6 +22,7 @@ setup(
     },
     install_requires=[
         'fixtures',
+        'six',
     ],
     package_dir={'': 'src'},
     packages=setuptools.find_packages(where='src'),

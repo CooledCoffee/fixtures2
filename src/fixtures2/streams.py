@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from fixtures2.patches import PatchesFixture
 import sys
-try:
-    from StringIO import StringIO  # @UnusedImport
-except:
-    from io import StringIO  # @Reimport
+
+from six import StringIO
+
+from fixtures2.patches import PatchesFixture
 
 class StreamsFixture(PatchesFixture):
     @property
