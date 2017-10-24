@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
+
+import six
 from fixtures.fixture import Fixture
 try:
-    from mox import Comparator
-    import mox
-    
+    if six.PY3:
+        from mox3.mox import Comparator
+        import mox3
+    else:
+        from mox import Comparator
+        import mox
+
     class MoxFixture(Fixture):
         def setUp(self):
             super(MoxFixture, self).setUp()
