@@ -5,16 +5,16 @@ import six
 from fixtures.fixture import Fixture
 try:
     if six.PY3:
-        from mox3.mox import Comparator
+        from mox3.mox import Mox, Comparator
         import mox3
     else:
-        from mox import Comparator
+        from mox import Mox, Comparator
         import mox
 
     class MoxFixture(Fixture):
         def setUp(self):
             super(MoxFixture, self).setUp()
-            self._mox = mox.Mox()
+            self._mox = Mox()
             self.addCleanup(self._mox.ResetAll)
             self.addCleanup(self._mox.UnsetStubs)
             
